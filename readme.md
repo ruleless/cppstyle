@@ -74,7 +74,7 @@ string tableName; // Ok
 struct UrlTableProperties
 {
     string name;
-	int numEntries;
+    int numEntries;
 }
 ```
 
@@ -98,8 +98,8 @@ deleteUrl()
 ``` c++
 enum UrlTableErrors {
     OK = 0,
-	ERROR_OUT_OF_MEMORY,
-	ERROR_MALFORMED_INPUT,
+    ERROR_OUT_OF_MEMORY,
+    ERROR_MALFORMED_INPUT,
 };
 ```
 
@@ -195,10 +195,10 @@ class MyClass
 {
   public:
     MyClass() = default;
-	~MyClass() = default;
+    ~MyClass() = default;
 
-	MyClass(const MyClass &) = delete;
-	MyClass& operator=(const MyClass &) = delete;
+    MyClass(const MyClass &) = delete;
+    MyClass& operator=(const MyClass &) = delete;
 };
 ```
 
