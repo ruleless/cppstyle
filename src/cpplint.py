@@ -3130,10 +3130,13 @@ def CheckComment(line, filename, linenum, next_line_start, error):
     if re.sub(r'\\.', '', line[0:commentpos]).count('"') % 2 == 0:
       # Allow one space for new scopes, two spaces otherwise:
       if (not (Match(r'^.*{ *//', line) and next_line_start == commentpos) and
-          ((commentpos >= 1 and
-            line[commentpos-1] not in string.whitespace) or
-           (commentpos >= 2 and
-            line[commentpos-2] not in string.whitespace))):
+          # ((commentpos >= 1 and
+          #   line[commentpos-1] not in string.whitespace) or
+          #  (commentpos >= 2 and
+          #   line[commentpos-2] not in string.whitespace))):
+          # <change by ruleless>: one space is enough
+          (commentpos >= 1 and
+            line[commentpos-1] not in string.whitespace)):
         error(filename, linenum, 'whitespace/comments', 2,
               'At least two spaces is best between code and comments')
 
@@ -3759,8 +3762,10 @@ def CheckBraces(filename, clean_lines, linenum, error):
     if (not Search(r'[,;:}{(]\s*$', prevline) and
         not Match(r'\s*#', prevline) and
         not (GetLineWidth(prevline) > _line_length - 2 and '[]' in prevline)):
-      error(filename, linenum, 'whitespace/braces', 4,
-            '{ should almost always be at the end of the previous line')
+      # <change by ruleless>: We don't think this is bad style
+      # error(filename, linenum, 'whitespace/braces', 4,
+      #       '{ should almost always be at the end of the previous line')
+      pass
 
   # An else clause should be on the same line as the preceding closing brace.
   if Match(r'\s*else\b\s*(?:if\b|\{|$)', line):
